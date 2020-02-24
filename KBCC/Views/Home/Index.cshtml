@@ -1,0 +1,192 @@
+﻿
+@{
+    ViewBag.Title = "Chăm sóc khách hàng";
+}
+@*<div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Chăm sóc khách hàng</h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Dashboard_1", "Dashboards")">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a>Trang chủ</a>
+                </li>
+                <li class="active breadcrumb-item">
+                    <strong>Chăm sóc khách hàng</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>*@
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-laptop"></i> Tất cả <span class="label label-warning">12</span></a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-2"><i class="fa fa-laptop"></i> Đơn mới <span class="label label-success">3</span></a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-3"><i class="fa fa-laptop"></i> Đã xác nhận <span class="label label-primary">3</span></a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-4"><i class="fa fa-laptop"></i> Đã gửi hàng <span class="label label-primary">3</span></a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-5"><i class="fa fa-laptop"></i> Đã nhận <span class="label label-primary">3</span></a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-6"><i class="fa fa-laptop"></i> Đã hoàn <span class="label label-primary">3</span></a></li>
+                    <li><a class="nav-link" data-toggle="tab" href="#tab-7"><i class="fa fa-laptop"></i> Đã hủy <span class="label label-danger">3</span></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Mã ĐH </th>
+                                            <th style="width:120px;">Trạng thái </th>
+                                            <th>Khách hàng</th>
+                                            <th>Facebook KH</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Tags</th>
+                                            <th>Ghi chú NB</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Tiền COD</th>
+                                            <th>ĐVVC</th>
+                                            <th colspan="2">Người tạo</th>
+                                            <th>Ngày tạo</th>
+                                            <th>Ngày gửi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < 20; i++)
+                                        {
+                                            <tr>
+                                                <td><input type="checkbox" checked class="i-checks" name="input[]"></td>
+                                                <td><button class="btn btn-outline-success btn-code">AA00000001</button></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-danger btn-state">Đơn mới</button>
+                                                        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split btn-state" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <span class="sr-only">Toggle Dropdown</span>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Hủy đơn</a>
+                                                            <a class="dropdown-item" href="#">Đơn mới</a>
+                                                            <a class="dropdown-item" href="#">Xuất hàng</a>
+                                                            <a class="dropdown-item" href="#">Chờ gửi</a>
+                                                            <a class="dropdown-item" href="#">Đang gửi</a>
+                                                            <a class="dropdown-item" href="#">Nhận hàng</a>
+                                                            <a class="dropdown-item" href="#">Nhận COD</a>
+                                                            <a class="dropdown-item" href="#">Báo hoàn</a>
+                                                            <a class="dropdown-item" href="#">Nhận hoàn</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item" href="#">Hủy</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Nguyễn Văn Thanh</td>
+                                                <td>Thanh Nguyễn</td>
+                                                <td>Quang Minh, Hiệp Hòa, Bắc Giang</td>
+                                                <td><a href="#"><i class="fa fa-check text-navy"></i>Khách quen</a></td>
+                                                <td>Không có</td>
+                                                <td>Kính mắt ABC</td>
+                                                <td>150.000 VNĐ</td>
+                                                <td>180.000 VNĐ</td>
+                                                <td>Viettel Post</td>
+                                                <td class="client-avatar"><img alt="image" src="~/Images/a2.jpg"> </td>
+                                                <td><a href="#contact-1" class="client-link">Nguyễn Văn Thanh</a></td>
+                                                <td>@DateTime.Now.ToShortDateString()</td>
+                                                <td>@DateTime.Now.ToShortDateString()</td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                        <div class="panel-body">
+                            <strong>T2</strong>
+                        </div>
+                    </div>
+                    <div id="tab-3" class="tab-pane">
+                        <div class="panel-body">
+                            <strong>T3</strong>
+                        </div>
+                    </div>
+                    <div id="tab-4" class="tab-pane">
+                        <div class="panel-body">
+                            <strong>T4</strong>
+                        </div>
+                    </div>
+                    <div id="tab-5" class="tab-pane">
+                        <div class="panel-body">
+                            <strong>T5</strong>
+                        </div>
+                    </div>
+                    <div id="tab-6" class="tab-pane">
+                        <div class="panel-body">
+                            <strong>T6</strong>
+                        </div>
+                    </div>
+                    <div id="tab-7" class="tab-pane">
+                        <div class="panel-body">
+                            <strong>T7</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+}
+@section Scripts {
+    @Scripts.Render("~/plugins/peity")
+    @Scripts.Render("~/plugins/iCheck")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+            $("span.pie").peity("pie", {
+                fill: ['#1ab394', '#d7d7d7', '#ffffff']
+            })
+
+            $(".line").peity("line", {
+                fill: '#1ab394',
+                stroke: '#169c81',
+            })
+
+            $(".bar").peity("bar", {
+                fill: ["#1ab394", "#d7d7d7"]
+            })
+
+            $(".bar_dashboard").peity("bar", {
+                fill: ["#1ab394", "#d7d7d7"],
+                width: 100
+            })
+
+            var updatingChart = $(".updating-chart").peity("line", { fill: '#1ab394', stroke: '#169c81', width: 64 })
+
+            setInterval(function () {
+                var random = Math.round(Math.random() * 10)
+                var values = updatingChart.text().split(",")
+                values.shift()
+                values.push(random)
+
+                updatingChart
+                    .text(values.join(","))
+                    .change()
+            }, 1000);
+
+        });
+    </script>
+}
