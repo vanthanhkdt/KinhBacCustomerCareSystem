@@ -1,8 +1,14 @@
-﻿<div class="footer">
+﻿<div class="footer" style="background-color:#bdbdbd">
     <div class="float-right">
-        Example text
+        @*Liên hệ: (+84) 00 0000 000*@
+        <label class="btn btn-outline-primary">Tổng: 20 đơn hàng</label>
     </div>
     <div>
-        <strong>Bản quyền thuộc về</strong> KB Customer Care &copy; @DateTime.Now.Year
+        @*<strong>Bản quyền thuộc về</strong> KB Customer Care &copy; @DateTime.Now.Year*@
+        <button class="btn btn-success " type="button" data-toggle="modal" data-target="#modal-upload-orders" data-backdrop="static" data-keyboard="false"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Up đơn hàng</span></button>
+        <button class="btn btn-primary " type="button"><i class="fa fa-check"></i>&nbsp;Cập nhật MVĐ</button>
+        <button class="btn btn-secondary " type="button"><i class="fa fa-file-excel-o"></i>&nbsp;Xuất Excel</button>
+        <button class="btn btn-secondary " type="button"><i class="fa fa-window-restore"></i>&nbsp;Đối xoát</button>
+        <button class="btn btn-secondary " type="button"><i class="fa fa-undo"></i>&nbsp;Hoàn kho</button>
     </div>
 </div>

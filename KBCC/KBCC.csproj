@@ -296,6 +296,7 @@
     <Content Include="Content\plugins\toastr\toastr.min.css" />
     <Content Include="Content\plugins\touchspin\jquery.bootstrap-touchspin.min.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome\css\font-awesome.css" />
     <Content Include="fonts\font-awesome\css\font-awesome.min.css" />
@@ -1145,6 +1146,7 @@
     <Content Include="Images\p6.jpg" />
     <Content Include="Images\p7.jpg" />
     <Content Include="Images\p8.jpg" />
+    <Content Include="Images\prof.jpg" />
     <Content Include="Images\profile.jpg" />
     <Content Include="Images\profile_big.jpg" />
     <Content Include="Images\profile_small.jpg" />

@@ -312,4 +312,7 @@ function WinMove() {
         .disableSelection();
 }
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
 
