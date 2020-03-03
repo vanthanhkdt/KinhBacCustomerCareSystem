@@ -11575,14 +11575,14 @@ body.md-skin {
     padding: 1px;
 }
 
-table th {
+.table-order th {
     text-transform: uppercase;
     white-space: nowrap;
 }
 
 .table-order tbody {
     display: block;
-    height: 720px;
+    height: 70vh;
     overflow: auto;
 }
 
@@ -11592,10 +11592,26 @@ thead, tbody tr {
     table-layout: fixed;
 }
 
-.checked {
-    background-color: #A2D9CE;
+table .add, .delete, .edit {
+    width: 20px;
+    align-content: center;
 }
 
+table .add {
+    color: green;
+}
+
+table .delete {
+    color: red;
+}
+
+table .edit {
+    color: blue;
+}
+
+table .checked {
+    background-color: #A2D9CE;
+}
 
 .modal-product .box-caption {
     margin: 20px 0 10px;
@@ -12166,7 +12182,117 @@ div.fill-order-area {
         text-align: center
     }
 
-    /*Modal Upload Orders*/
-.modal-upload-orders a i{
-    color:green;
+/*Modal Upload Orders*/
+.modal-upload-orders a i {
+    color: green;
+}
+
+.main-tabs {
+    width: 100%;
+    padding: 0px 0px 80px 0px;
+}
+
+#modal-add-order .m-tab-content {
+    display: none;
+}
+
+/*Icon list*/
+#modal-add-order .tags .fontawesome-icon-list a {
+    color: #5A738E;
+    text-decoration: none;
+}
+
+#modal-add-order .tags .fontawesome-icon-list .fa-hover a:hover {
+    background-color: #ddd;
+    color: #fff;
+    text-decoration: none;
+}
+
+#modal-add-order .fontawesome-icon-list .fa-hover a {
+    display: block;
+    line-height: 32px;
+    height: 32px;
+    padding-left: 10px;
+    border-radius: 4px;
+}
+
+    #modal-add-order .fontawesome-icon-list .fa-hover a:hover .fa {
+        font-size: 28px;
+        vertical-align: -6px;
+    }
+
+    #modal-add-order .fontawesome-icon-list .fa-hover a .fa {
+        width: 32px;
+        font-size: 16px;
+        display: inline-block;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+.tag-symbol-list {
+    height: 50vh;
+    overflow-y: auto;
+}
+
+.table-order tbody tr td.tags ul {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .table-order tbody tr td.tags ul li {
+        display: inline-block;
+        padding: 0 7px;
+        color: #fff;
+        background-color: gray;
+        line-height: 20px;
+        margin-right: 3px;
+        white-space: nowrap;
+        cursor: default;
+    }
+
+.tags ul li {
+    display: inline-block;
+    padding: 0 7px;
+    color: #fff;
+    background-color: gray;
+    line-height: 20px;
+    margin-right: 3px;
+    white-space: nowrap;
+    cursor: default;
+}
+
+.tag-preview-icon{
+    padding: 2px 5px;
+}
+.tag-optional {
+    background-color: #EDE7F6;
+    padding: 10px;
+    border-color: #00ad5f;
+    border-style: solid;
+    border-width: 0px 0px 0px 5px;
+    padding-left: 5px;
+}
+.tag-optional div.name-info {
+    margin-bottom: 20px;
+}
+#tag-preview-name{
+    padding-left: 3px;
+}
+
+/*Import Excel*/
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload i {
+    color: blue;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
 }

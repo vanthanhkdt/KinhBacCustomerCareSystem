@@ -78,8 +78,16 @@ E:\Works\KBCC\KBCC\KBCC\bin\Microsoft.Owin.Security.Twitter.xml
 E:\Works\KBCC\KBCC\KBCC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Works\KBCC\KBCC\KBCC\bin\Microsoft.Owin.Security.OAuth.xml
 E:\Works\KBCC\KBCC\KBCC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.csprojAssemblyReference.cache
 E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.csproj.CoreCompileInputs.cache
 E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.csproj.CopyComplete
 E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.dll
 E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.pdb
+E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.InitialCreate.resources
+E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.csproj.GenerateResource.cache
+E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.FirstUpdate.resources
+E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.AddUserInfo.resources
+E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.AddUserRoles.resources
+E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.AddTableAndUseLongDataType.resources
+E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.AddCustomerCareTables.resources
+E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.csprojAssemblyReference.cache
+E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.AddBackgroundColorTag.resources
