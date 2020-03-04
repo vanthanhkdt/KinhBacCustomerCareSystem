@@ -5493,7 +5493,7 @@ video {
 }
 
 .inmodal .modal-title {
-    font-size: 26px;
+    font-size: 18px;
 }
 
 .inmodal .modal-icon {
@@ -12183,10 +12183,15 @@ div.fill-order-area {
     }
 
 /*Modal Upload Orders*/
-.modal-upload-orders a i {
+.table-upload-orders a.add-new i {
     color: green;
 }
-
+.table-upload-orders a.delete i {
+    color: red;
+}
+.table-upload-orders a.copy i {
+    color: blue;
+}
 .main-tabs {
     width: 100%;
     padding: 0px 0px 80px 0px;
@@ -12296,3 +12301,26 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
 }
+
+.table-upload-orders th.order, .table-upload-orders td.order {
+    width:50px !important;
+}
+.table-upload-orders th.import-excel-actions, .table-upload-orders td.import-excel-actions {
+    width: 60px !important;
+}
+.table-upload-orders tr.input-val{
+    padding:2px;
+}
+
+.upload-order-area {
+    height: 60vh;
+    overflow-y: auto;
+}
+.table-upload-orders td, .import-excel-actions {
+    vertical-align: middle !important;
+    align-content: center !important;
+    text-align: center !important;
+}
+    .table-upload-orders td a, .import-excel-actions .delete {
+        margin-left: 3px;
+    }

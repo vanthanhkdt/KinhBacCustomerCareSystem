@@ -91,3 +91,5 @@ E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.AddTableAndUseLongDataType.res
 E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.AddCustomerCareTables.resources
 E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.csprojAssemblyReference.cache
 E:\Works\KBCC\KBCC\KBCC\obj\Debug\KBCC.Migrations.AddBackgroundColorTag.resources
+E:\Works\KBCC\KBCC\KBCC\bin\EPPlus.dll
+E:\Works\KBCC\KBCC\KBCC\bin\EPPlus.xml

@@ -463,7 +463,7 @@
                                             Hoạt động
                                         </label>
                                     </div>
-                                    <button class="btn btn-success" type="button" style="width:120px;"><i class="fa fa-check"></i>&nbsp;Thêm</button>
+                                    <button class="btn btn-success" type="button" style="width:120px;"><i class="fa fa-check"></i>&nbsp;Hoàn tất</button>
                                 </div>
 
                             </div>
@@ -2424,8 +2424,8 @@
             </div>
             <div class="modal-footer">
                 <div class="col mp-control text-center">
-                    <button class="btn btn-outline-primary" type="button"><i class="fa fa-save"></i>&nbsp;&nbsp;<span class="bold">Lưu</span></button>
-                    <button class="btn btn-outline-danger" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i>&nbsp;&nbsp;<span class="bold">Đóng</span></button>
+                    <button class="btn btn-primary" type="button"><i class="fa fa-save"></i>&nbsp;&nbsp;<span class="bold">Lưu</span></button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i>&nbsp;&nbsp;<span class="bold">Đóng</span></button>
                 </div>
             </div>
         </div>
@@ -2439,38 +2439,47 @@
             <div class="modal-header">
                 @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                     <h4 class="modal-title custom_align" id="Heading">Tải lên đơn mới </h4>*@
-                <h4 class="modal-title pull-left">TẠO ĐƠN HÀNG LOẠT</h4>
+                <h5 class="modal-title pull-left">TẠO ĐƠN HÀNG LOẠT</h5>
             </div>
-            <div class="modal-body">
-                <table class="table table-bordered table-hover">
+            <div class="modal-body upload-order-area">
+                <table class="table table-bordered table-hover table-upload-orders">
                     <thead>
                         <tr class="active">
-                            <th style="width:50px !important;">STT</th>
-                            <th>Họ Tên</th>
+                            <th class="order">STT</th>
+                            <th>Họ tên</th>
                             <th>SĐT</th>
                             <th>Địa chỉ</th>
                             <th>Ghi chú nội bộ</th>
+                            <th class="import-excel-actions">...</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="upload-excel-body">
                         <tr>
-                            <td style="width:50px !important;" class="active">
+                            <td class="order active">
                                 1
                                 <a class="add-new">
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </td>
-                            <td style="padding: 2px;">
-                                <input class="form-control input-sm ng-untouched ng-pristine ng-valid" placeholder="Họ tên" type="text">
+                            <td class="input-area">
+                                <input class="form-control" placeholder="Họ tên" type="text">
                             </td>
-                            <td style="padding: 2px;">
-                                <input class="form-control input-sm ng-untouched ng-pristine ng-valid" placeholder="SĐT" type="text">
+                            <td class="input-area">
+                                <input class="form-control" placeholder="SĐT" type="text">
                             </td>
-                            <td style="padding: 2px;">
-                                <input class="form-control input-sm ng-untouched ng-pristine ng-valid" placeholder="Địa chỉ" type="text">
+                            <td class="input-area">
+                                <input class="form-control" placeholder="Địa chỉ" type="text">
                             </td>
-                            <td style="padding: 2px;">
-                                <input class="form-control input-sm ng-untouched ng-pristine ng-valid" placeholder="Ghi chú nội bộ" type="text">
+                            <td class="input-area">
+                                <input class="form-control" placeholder="Ghi chú nội bộ" type="text">
+                            </td>
+                            <td class="import-excel-actions">
+                                <a class="copy">
+                                    <i class="fa fa-copy"></i>
+                                </a>
+                                <a class="delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -2478,18 +2487,19 @@
             </div>
             <div class="modal-footer">
                 <div class="col mp-control text-center">
-
-                    <label id="label-file-upload" for="file-upload" class="custom-file-upload">
-                        <i class="fa fa-cloud-upload"></i> <span id="file-upload-name">Nhập từ Excel</span>
-                    </label>
-                    <input id="file-upload" type="file" />
+                    <button id="btn-import-excel" class="btn btn-outline-primary custom-file-upload">
+                        <i class="fa fa-cloud-upload"></i> <span id="input-import-excel-name">Nhập từ Excel</span>
+                    </button>
+                    <input id="input-import-excel" type="file" />
 
                     @*<input type="file" id="imgupload" style="display:none" />*@
                     @*<input type="file" id="input-import-excel" style="display:none" />*@
                     @*<button id="btn-import-excel" class="btn btn-outline-primary" type="button"><i class="fa fa-file-excel-o"></i>&nbsp;&nbsp;<span class="bold">Nhập từ Excel</span></button>*@
-                    <button id="btn-upload-excel" class="btn btn-outline-primary" type="button"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Tải lên</span></button>
-                    <button class="btn btn-outline-success" type="button"><i class="fa fa-check"></i>&nbsp;&nbsp;<span class="bold">Hoàn thành</span></button>
-                    <button class="btn btn-outline-danger" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i>&nbsp;&nbsp;<span class="bold">Hủy</span></button>
+                    <button id="btn-verify-excel" class="btn btn-warning" type="button"><i class="fa fa-gears"></i>&nbsp;&nbsp;<span class="bold">Kiểm tra</span></button>
+                    <button id="btn-upload-excel-delete" class="btn btn-danger" type="button"><i class="fa fa-trash"></i>&nbsp;&nbsp;<span class="bold">Xóa</span></button>
+                    <button id="btn-upload-excel" class="btn btn-success" type="button"><i class="fa fa-file-excel-o"></i>&nbsp;&nbsp;<span class="bold">Tải lên</span></button>
+                    <button class="btn btn-primary" type="button"><i class="fa fa-check"></i>&nbsp;&nbsp;<span class="bold">Hoàn thành</span></button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i>&nbsp;&nbsp;<span class="bold">Hủy</span></button>
                 </div>
             </div>
         </div>
@@ -2822,16 +2832,35 @@
 @section Styles {
     @Styles.Render("~/plugins/awesomeCheckboxStyles")
     @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/plugins/toastrStyles")
 }
 @section Scripts {
     @Scripts.Render("~/plugins/peity")
     @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/toastr")
 
     @*@Scripts.Render("~/Content/plugins/colorpicker/colorpickerStyles")*@
     <script src="~/Scripts/plugins/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/js/bootstrap-colorpicker.js"></script>*@
     <script type="text/javascript">
+        var tableBody = $('.upload-excel-body');
         $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "onclick": null,
+                "showDuration": "400",
+                "hideDuration": "500",
+                "timeOut": "3000",
+                "extendedTimeOut": "500",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
             let val = $('.tag-symbol').find('input').val();
             $('.tag-symbol').find('i').removeClass();
             $('.tag-symbol').find('i').addClass("fa").addClass(val);
@@ -2854,49 +2883,18 @@
                 }
             });
 
-            $('#file-upload').change(function () {
-                //alert('#file-upload');
+            $('#input-import-excel').change(function () {
+                //alert('#input-import-excel');
                 let f = this.files[0];
                 let name = f.name;
                 console.log(name);
-                $('#file-upload-name').text(name);
+                $('#input-import-excel-name').text(name);
             });
 
-            //$("span.pie").peity("pie", {
-            //    fill: ['#1ab394', '#d7d7d7', '#ffffff']
-            //})
-
-            //$(".line").peity("line", {
-            //    fill: '#1ab394',
-            //    stroke: '#169c81',
-            //})
-
-            //$(".bar").peity("bar", {
-            //    fill: ["#1ab394", "#d7d7d7"]
-            //})
-
-            //$(".bar_dashboard").peity("bar", {
-            //    fill: ["#1ab394", "#d7d7d7"],
-            //    width: 100
-            //})
-
-            //var updatingChart = $(".updating-chart").peity("line", { fill: '#1ab394', stroke: '#169c81', width: 64 })
-
-            //setInterval(function () {
-            //    var random = Math.round(Math.random() * 10)
-            //    var values = updatingChart.text().split(",")
-            //    values.shift()
-            //    values.push(random)
-
-            //    updatingChart
-            //        .text(values.join(","))
-            //        .change()
-            //}, 1000);
-
             //Me
-            //$('#btn-import-excel').on('click', function () {
-            //    $('#input-import-excel').trigger('click');
-            //});
+            $('#btn-import-excel').on('click', function () {
+                $('#input-import-excel').trigger('click');
+            });
 
             $('#choose-bg-color-area').colorpicker({
                 color: '#00FF00',
@@ -2941,42 +2939,264 @@
             $('#tag-preview-name').text(cnt != "" ? cnt : 'Tag của tôi');
         });
 
+        $('.add-new').on('click', function () {
+            var tr = $('<tr>');
+            var name = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "Họ tên" });
+            var phone = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "SĐT" });
+            var address = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "Địa chỉ" });
+            var internalNote = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "Ghi chú nội bộ" });
+
+            tr.append($('<td>', { class: 'order', text: getMaxOrder() }));
+            tr.append($('<td>', { class: 'input-area' }).append(name));
+            tr.append($('<td>', { class: 'input-area' }).append(phone));
+            tr.append($('<td>', { class: 'input-area' }).append(address));
+            tr.append($('<td>', { class: 'input-area' }).append(internalNote));
+
+            let aCopy = $('<a>', { class: 'copy' });
+            aCopy.append($('<i>', { class: 'fa fa-copy' }))
+            aCopy.on('click', function () {
+                //tableOrder++;
+                let $ctr = $(this).closest('tr');
+                let $trColone = $ctr.clone();
+                $trColone.insertAfter($ctr);
+                console.log($ctr);
+                //tableBody.append(ctr);
+                $('.add-new').remove();
+                addAddAction();
+            });
+            let aDelete = $('<a>', { class: 'delete' });
+            aDelete.append($('<i>', { class: 'fa fa-trash' }))
+            aDelete.on('click', function () {
+                tr.remove();
+
+                $('.add-new').remove();
+                addAddAction();
+            });
+
+            tr.append($('<td>', { class: 'import-excel-actions' }).append(aCopy).append(aDelete));
+
+            tableBody.append(tr);
+            $('.add-new').remove();
+            addAddAction();
+        });
+
+        $('.copy').on('click', function () {
+            let $ctr = $(this).closest('tr');
+            let $trColone = $ctr.clone();
+            $trColone.insertAfter($ctr);
+            console.log($ctr);
+            //tableBody.append(ctr);
+            $('.add-new').remove();
+            addAddAction();
+        });
+        $('.delete').on('click', function () {
+            $(this).closest('tr').remove();
+
+            $('.add-new').remove();
+            addAddAction();
+        });
+
+        $('#btn-upload-excel-delete').on('click', function () {
+            tableBody.empty();
+            var tr = $('<tr>');
+            var name = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "Họ tên" });
+            var phone = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "SĐT" });
+            var address = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "Địa chỉ" });
+            var internalNote = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "Ghi chú nội bộ" });
+
+            tr.append($('<td>', { class: 'order', text: getMaxOrder() }));
+            tr.append($('<td>', { class: 'input-area' }).append(name));
+            tr.append($('<td>', { class: 'input-area' }).append(phone));
+            tr.append($('<td>', { class: 'input-area' }).append(address));
+            tr.append($('<td>', { class: 'input-area' }).append(internalNote));
+
+            let aCopy = $('<a>', { class: 'copy', title: 'Sao chép' });
+            aCopy.append($('<i>', { class: 'fa fa-copy' }))
+            aCopy.on('click', function () {
+                //tableOrder++;
+                let $ctr = $(this).closest('tr');
+                let $trColone = $ctr.clone();
+                $trColone.insertAfter($ctr);
+                console.log($ctr);
+                //tableBody.append(ctr);
+                $('.add-new').remove();
+                addAddAction();
+            });
+            let aDelete = $('<a>', { class: 'delete', title: 'Xóa' });
+            aDelete.append($('<i>', { class: 'fa fa-trash' }))
+            aDelete.on('click', function () {
+                tr.remove();
+
+                $('.add-new').remove();
+                addAddAction();
+            });
+
+            tr.append($('<td>', { class: 'import-excel-actions' }).append(aCopy).append(aDelete));
+
+            tableBody.append(tr);
+            $('.add-new').remove();
+            addAddAction();
+        });
         $(document).on('click', '#btn-upload-excel', function () {
             if (window.FormData !== undefined) {
-                var fileUpload = $("#file").get(0);
-                if ($("#file").get(0).files.length == 0) {
-                    toastr.error("Please upload the file");
+                var fileUpload = $("#input-import-excel").get(0);
+                if ($("#input-import-excel").get(0).files.length == 0) {
+                    toastr.error("Vui lòng chọn 1 tập tin.", "Lỗi");
                     return;
                 }
-                showLoader();
+
                 var files = fileUpload.files;
                 var fileData = new FormData();
                 for (var i = 0; i < files.length; i++) {
                     fileData.append(files[i].name, files[i]);
                 }
                 $.ajax({
-                    url: '/Home/SaveExcel',
+                    url: '/Home/ImportExcel',
                     type: "POST",
                     contentType: false,
                     processData: false,
                     data: fileData,
+                    //beforeSend: function () { showLoader(); },
                     success: function (result) {
-                        hideLoader();
-                        if (result != null)
-                            toastr.success("Excel uploaded successfully");
-                        else
-                            toastr.error("Something went wrong.Please contact administrator");
+                        //hideLoader();
+                        if (result != null) {
+                            // Sample
+                            //<tr>
+                            //    <td style="width:50px !important;" class="active">
+                            //        1
+                            //    <a class="add-new">
+                            //            <i class="fa fa-plus"></i>
+                            //    </a>
+                            //    </td>
+                            //    <td style="padding: 2px;">
+                            //        <input class="form-control" placeholder="Họ tên" type="text">
+                            //   </td>
+                            //   <td style="padding: 2px;">
+                            //        <input class="form-control" placeholder="SĐT" type="text">
+                            //    </td>
+                            //    <td style="padding: 2px;">
+                            //        <input class="form-control" placeholder="Địa chỉ" type="text">
+                            //    </td>
+                            //    <td style="padding: 2px;">
+                            //         <input class="form-control" placeholder="Ghi chú nội bộ" type="text">
+                            //    </td>
+                            //</tr>
+                            tableBody.empty();
+                            $.each(result, function (i, s) {
+                                //console.log(s);
+
+                                var tr = $('<tr>');
+                                var name = $('<input>', { val: s.CustomerName, class: 'form-control input-sm', type: 'text', placeholder: "Họ tên" });
+                                var phone = $('<input>', { val: s.CustomerPhone, class: 'form-control input-sm', type: 'text', placeholder: "SĐT" });
+                                var address = $('<input>', { val: s.CustomerAddress, class: 'form-control input-sm', type: 'text', placeholder: "Địa chỉ" });
+                                var internalNote = $('<input>', { val: s.InternalNote, class: 'form-control input-sm', type: 'text', placeholder: "Ghi chú nội bộ" });
+
+                                //var span = $('<span>', { class: 'action', text: i + 1 });
+                                tr.append($('<td>', { class: 'order active', text: i + 1 }));
+                                tr.append($('<td>', { class: 'input-area' }).append(name));
+                                tr.append($('<td>', { class: 'input-area' }).append(phone));
+                                tr.append($('<td>', { class: 'input-area' }).append(address));
+                                tr.append($('<td>', { class: 'input-area' }).append(internalNote));
+
+                                let aCopy = $('<a>', { class: 'copy' });
+                                aCopy.append($('<i>', { class: 'fa fa-copy' }))
+                                aCopy.on('click', function () {
+                                    //tableOrder++;
+                                    let $ctr = $(this).closest('tr');
+                                    let $trColone = $ctr.clone();
+                                    $trColone.insertAfter($ctr);
+                                    console.log($ctr);
+                                    //tableBody.append(ctr);
+                                    $('.add-new').remove();
+                                    addAddAction();
+                                });
+                                let aDelete = $('<a>', { class: 'delete' });
+                                aDelete.append($('<i>', { class: 'fa fa-trash' }))
+                                aDelete.on('click', function () {
+                                    tr.remove();
+
+                                    $('.add-new').remove();
+                                    addAddAction();
+                                });
+
+                                tr.append($('<td>', { class: 'import-excel-actions' }).append(aCopy).append(aDelete));
+
+                                tableBody.append(tr);
+                            });
+                            addAddAction();
+                            toastr.success("Nhập từ Excel thành công", "Thành công");
+                        }
+                        else {
+                            toastr.error("Bạn không thể thực hiện hành động này. Liên hệ với Quản trị viên để tiếp tục làm việc.", "Lỗi");
+                        }
                     },
                     error: function (err) {
-                        hideLoader();
-                        toastr.error("Something went wrong.Please contact administrator");
+                        //hideLoader();
+                        toastr.error("Bạn không thể thực hiện hành động này. Liên hệ với Quản trị viên để tiếp tục làm việc.", "Lỗi");
                     }
                 });
             } else {
-                toastr.error("FormData is not supported in the browser.");
+                toastr.error("Trình duyệt của bạn không hỗ trợ.", "Lỗi");
             }
         });
+        function addAddAction() {
+            let lastRow = $('.table-upload-orders tr:last');
+            //console.log(lastRow);
+            let aTag = $('<a>', { class: 'add-new' });
+            aTag.append($('<i>', { class: 'fa fa-plus' }))
+            aTag.on('click', function () {
+                //tableOrder++;
+                var tr = $('<tr>');
+                var name = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "Họ tên" });
+                var phone = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "SĐT" });
+                var address = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "Địa chỉ" });
+                var internalNote = $('<input>', { class: 'form-control input-sm', type: 'text', placeholder: "Ghi chú nội bộ" });
 
+                tr.append($('<td>', { class: 'order', text: getMaxOrder() }));
+                tr.append($('<td>', { class: 'input-area' }).append(name));
+                tr.append($('<td>', { class: 'input-area' }).append(phone));
+                tr.append($('<td>', { class: 'input-area' }).append(address));
+                tr.append($('<td>', { class: 'input-area' }).append(internalNote));
+
+                let aCopy = $('<a>', { class: 'copy' });
+                aCopy.append($('<i>', { class: 'fa fa-copy' }))
+                aCopy.on('click', function () {
+                    //tableOrder++;
+                    let $ctr = $(this).closest('tr');
+                    let $trColone = $ctr.clone();
+                    $trColone.insertAfter($ctr);
+                    console.log($ctr);
+                    //tableBody.append(ctr);
+                    $('.add-new').remove();
+                    addAddAction();
+                });
+                let aDelete = $('<a>', { class: 'delete' });
+                aDelete.append($('<i>', { class: 'fa fa-trash' }))
+                aDelete.on('click', function () {
+                    tr.remove();
+
+                    $('.add-new').remove();
+                    addAddAction();
+                });
+
+                tr.append($('<td>', { class: 'import-excel-actions' }).append(aCopy).append(aDelete));
+
+                tableBody.append(tr);
+                $('.add-new').remove();
+                addAddAction();
+            });
+            //console.log(aTag);
+            lastRow.find('.order').append(aTag);
+        }
+        function getMaxOrder() {
+            let lastRow = $('.table-upload-orders tr:last');
+            let maxId = parseInt(lastRow.find('.order').text()) + 1;
+            console.log(maxId);
+            if (!isNaN(maxId)) {
+                return maxId;
+            }
+            return 1;
+        }
         function openTab(evt, tabName) {
             //alert(tabName);
             //console.log(evt.currentTarget);
