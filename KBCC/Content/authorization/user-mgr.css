@@ -1,0 +1,55 @@
+﻿th {
+    word-wrap: break-word;
+    text-align: center;
+    color: #ECF0F1;
+    background-color: rgba(52,73,94,.94);
+    vertical-align: top;
+    border: 1px solid #ccc !important;
+}
+
+td div.col-action {
+    margin: 0 auto;
+    vertical-align: middle !important;
+}
+
+.img-circle {
+    width: 70%;
+    background: #fff;
+    z-index: 1000;
+    position: inherit;
+    margin-top: 10px;
+    border: 1px solid rgba(52, 73, 94, 0.44);
+    padding: 4px;
+}
+
+.img-circle {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+td {
+    word-wrap: break-word;
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+tr .imgthumb {
+    max-width: 100px;
+}
+
+.imageviewer {
+    margin: 10px auto;
+}
+
+    .imageviewer img {
+        transition: 0.1s;
+        padding: 2px;
+        /*max-width:80px;
+    max-height:80px;*/
+    }
+
+        .imageviewer img:hover {
+            filter: grayscale(100%);
+            transform: scale(1.2);
+        }body {
+}

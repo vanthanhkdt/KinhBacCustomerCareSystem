@@ -3,5 +3,744 @@
     ViewBag.Title = "RoleActionManagement";
 }
 
-<h2>RoleActionManagement</h2>
+<link href="~/Content/authorization/user-mgr.css" rel="stylesheet" />
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <div class="breadcrumb flat">
+                <a href="~/Home/Index">Trang chủ</a>
+                <a href="~/Authorization/Index">Quản trị tài khoản</a>
+                <a href="javascript:location.reload();" class="active">Phân quyền</a>
+            </div>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Tìm</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Quản trị tài khoản <small>Quản lý phân quyền</small></h2>
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col">
+                                    Vai trò trên trang
+                                </div>
+                                <div class="col-2" style="margin-right:5px;float:right;">
+                                    <a href="#" class="btn btn-sm btn-success" id="btnAddRole">Thêm mới</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            @*<style>
+                                    table td, th {
+                                        border-bottom: 1px solid #ddd;
+                                        border-left: 1px solid #ddd;
+                                        border-right: 1px solid #ddd;
+                                        vertical-align:middle;
+                                    }
+                                </style>*@
+                            <div style="min-height:300px;">
+                                <table class="table table-sm table-hover">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" style="width:5%">ID</th>
+                                            <th scope="col" style="width:20%">Name</th>
+                                            <th scope="col" style="width:30%">Description</th>
+                                            <th scope="col" style="width:20%">CreatedBy</th>
+                                            <th scope="col" style="width:20%">CreatedTime</th>
+                                            <th scope="col" style="width:5%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbRoles"></tbody>
+                                </table>
+                            </div>
+
+                            <div class="text-center">
+                                <input type="hidden" value="1" id="roleCrnPage" />
+                                <div class="btn-group btn-group-sm" id="rolePages" role="group">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top:15px;">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col" id="titleAction">
+                                    Actions
+                                </div>
+                                <div class="col-2" style="margin-right:5px;float:right;">
+                                    <a href="#" class="btn btn-sm btn-success" id="btnroleactionadd" hidden>Thêm mới</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <style>
+                                table td, th {
+                                    border-bottom: 1px solid #ddd;
+                                    border-left: 1px solid #ddd;
+                                    border-right: 1px solid #ddd;
+                                }
+                            </style>
+                            <div style="min-height:300px;">
+                                <table class="table table-sm table-hover">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Id</th>
+
+                                            <th scope="col">Controller</th>
+                                            <th scope="col">Action</th>
+                                            <th scope="col">Menu</th>
+                                            <th scope="col">CreatedBy</th>
+                                            <th scope="col">CreatedTime</th>
+                                            <th scope="col">...</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbRoleaction"></tbody>
+                                </table>
+                            </div>
+
+                            <div class="text-center">
+                                <input type="hidden" id="CrnActPage" value="1" />
+                                <div class="btn-group btn-group-sm" role="group" id="ActionPages">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top:15px;">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col" id="titleAction">
+                                    Thành viên
+                                </div>
+                                <div class="col-2" style="margin-right:5px;float:right;">
+                                    <a href="#" class="btn btn-sm btn-success" id="btnaddUser" hidden>Thêm mới</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div style="min-height:300px;">
+                                <table class="table table-sm table-hover">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">GEN</th>
+                                            <th scope="col">Tên</th>
+                                            <th scope="col">Bộ phận</th>
+                                            <th scope="col">Nhà máy</th>
+                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col">Thêm bởi</th>
+                                            <th scope="col">Thêm lúc</th>
+                                            <th scope="col">...</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbMembers"></tbody>
+                                </table>
+                            </div>
+                            <div class="text-center">
+                                <input type="hidden" id="userPage" value="1" />
+                                <div class="btn-group btn-group-sm">
+                                    <div id="Pages"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="addrolemodal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<h5 class="modal-title">Add new role</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>*@
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Thêm vai trò trên trang</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-form-label col-form-label-sm">Name</div>
+                    <input type="text" class="form-control form-control-sm" id="rolename" />
+                </div>
+                <div class="form-group">
+                    <div class="col-form-label col-form-label-sm">Description</div>
+                    <textarea class="form-control form-control-sm" id="roledes" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-sm btn-primary" value="Thêm" id="btnaddrolesubmit" />
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="rolemappingmodal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<h5 class="modal-title">Role action mapping</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>*@
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Thêm phân quyền</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="roleid" />
+                <div class="form-group">
+                    <label class="col-form-label col-form-label-sm">Role Name</label>
+                    <input type="text" readonly id="currentRole" class="form-control form-control-sm" />
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label col-form-label-sm">Controller</label>
+                    <select class="form-control form-control-sm" id="controller"></select>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label col-form-label-sm">Action</label>
+                    <select class="form-control form-control-sm" id="action"></select>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label col-form-label-sm">Menu Text</label>
+                    <input type="text" id="menu" class="form-control form-control-sm" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-sm btn-primary" value="Thêm" id="btnAddAction" />
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="AddUserModal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<h5 class="modal-title">Select User To Add</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>*@
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Thêm mới người dùng</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="roleid" />
+                <div class="row" style="margin-left:5px;margin-right:5px;">
+                    <div>
+                        <select class="form-control form-control-sm" id="part" style="width:200px;"></select>
+                    </div>
+                    <div style="margin-top:15px;">
+                        <input type="text" class="form-control form-control-sm" id="uval" style="width:300px;" placeholder="Tên" />
+                    </div>
+                    <div style="margin-top:15px;">
+                        <input type="button" class="btn btn-sm btn-primary" id="btnsearch" style="width:100px;" value="Tìm kiếm" />
+                    </div>
+                </div>
+                <div class="row" style="margin-left:5px;margin-right:5px;margin-top:10px;">
+                    <table class="table table-sm table-hover table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">GEN</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Bộ phận</th>
+                                <th scope="col">...</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbUsers"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Xong</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        var btnroleactionadd = $('#btnroleactionadd');
+        var rolename = $('#rolename');
+        var roledes = $('#roledes');
+        var titleAction = $('#titleAction');
+        var tbRoles = $('#tbRoles');
+
+        function getRoles() {
+            $.ajax({
+                cache: false,
+                dataType: 'json',
+                url: 'GetRoles',
+                data: { page: $('#roleCrnPage').val(), rows: 10 },
+                success: function (data) {
+                    tbRoles.empty();
+
+                    initializerPageGroup(data['pageinfo']['current'], data['pageinfo']['total'], $('#rolePages'), rolePageClick);
+
+                    $.each(data['list'], function (i, item) {
+                        var tr = $('<tr>');
+                        tr.append($('<td>', { text: item['Id'], style: 'text-align:center;' }));
+
+                        var rol = $('<a>', { href: '#', text: item['Name'] });
+                        rol.on('click', function () {
+                            $('#roleid').val(item['Id']);
+                            $('#currentRole').val(item['Name']);
+                            $('#btnroleactionadd').removeAttr('hidden');
+                            $('#btnaddUser').removeAttr('hidden');
+
+                            titleAction.text('Actions in ' + item['Name']);
+                            $('#CrnActPage').val('1');
+                            $('#userPage').val(1)
+                            getRoleActions();
+                            getUsersRole(item.Id);
+                        });
+                        tr.append($('<td>').append(rol));
+                        tr.append($('<td>', { text: item['Description'] }));
+                        tr.append($('<td>', { text: item['CreatedBy'] }));
+                        tr.append($('<td>', { text: item['CreatedTime'] }));
+
+                        var a = $('<a>', {
+                            href: '#',
+                            class: 'fa fa-trash',
+                            style: 'color:red;'
+                        });
+                        a.on('click', function () {
+                            var ret = confirm('Do you want to delete rol ' + item['Name'] + ' ?');
+                            if (ret) {
+                                $.ajax({
+                                    cache: false,
+                                    data: { id: item['Id'] },
+                                    dataType: 'json',
+                                    url: 'DeleteRole',
+                                    success: function (result) {
+                                        alert(item['Name'] + ' has deleted !');
+                                        getRoles();
+                                    }
+                                });
+                            }
+                        });
+                        tr.append($('<td>', { class: 'col-action' }).append(a));
+
+                        tbRoles.append(tr);
+                    });
+                }
+            });
+        }
+
+        function rolePageClick(page) {
+            $('#roleCrnPage').val(page);
+            getRoles();
+        }
+
+        function getControllers() {
+            $.ajax({
+                cache: false,
+                dataType: 'json',
+                url: 'GetController',
+                success: function (data) {
+                    var controller = $('#controller');
+
+                    controller.empty();
+                    $.each(data, function (i, c) {
+                        controller.append($('<option>', { text: c['Text'], value: c['Value'] }));
+                    });
+                    controller.trigger('change');
+                }
+            });
+        }
+
+        function getActions() {
+            var controller = $('#controller').val();
+
+            $.ajax({
+                cache: false,
+                dataType: 'json',
+                data: { c: controller },
+                url: 'GetControllerActions',
+                success: function (data) {
+                    var action = $('#action');
+
+                    action.empty();
+                    $.each(data, function (i, c) {
+                        action.append($('<option>', { text: c, value: c }));
+                    });
+                }
+            });
+        }
+
+        function getRoleActions() {
+            var roleid = $('#roleid').val();
+            $.ajax({
+                cache: false,
+                data: { role: roleid, page: $('#CrnActPage').val(), rows: 10 },
+                dataType: 'json',
+                url: 'GetActions',
+                success: function (data) {
+                    var pageinfo = data['pageinfo'];
+                    initializerPageGroup(pageinfo['current'], pageinfo['total'], $('#ActionPages'), actPageClick);
+
+                    var tbRoleaction = $('#tbRoleaction');
+                    tbRoleaction.empty();
+                    $.each(data['list'], function (i, ac) {
+                        var tr = $('<tr>');
+
+                        tr.append($('<td>', { text: ac['Id'], style: 'text-align:center;' }));
+                        tr.append($('<td>', { text: ac['Controller'] }));
+                        tr.append($('<td>', { text: ac['Action'] }));
+                        tr.append($('<td>', { text: ac['Menu'] }));
+                        tr.append($('<td>', { text: ac['CreatedBy'] }));
+                        tr.append($('<td>', { text: ac['CreatedTime'] }));
+
+                        var a = $('<a>', { href: '#', class: 'fa fa-trash', style: 'color:red;' });
+                        a.on('click', function () {
+                            var ret = confirm('Do you want to delete ?');
+                            if (ret) {
+                                $.ajax({
+                                    cache: false,
+                                    dataType: 'json',
+                                    data: { id: ac['Id'] },
+                                    url: 'DeleteAction',
+                                    success: function (result) {
+                                        alert('Delete successfull !');
+                                        getRoleActions();
+                                    }
+                                });
+                            }
+                        });
+
+                        tr.append($('<td>', { class: 'col-action' }).append(a));
+
+                        tbRoleaction.append(tr);
+                    });
+                }
+            });
+        }
+
+        function actPageClick(page) {
+            $('#CrnActPage').val(page);
+            getRoleActions();
+        }
+
+        function getDepartments() {
+            $.getJSON("../Account/GetDepartments", function (data) {
+                var part = $("#part");
+                part.empty();
+
+                $.each(data, function (i, itemData) {
+
+                    part.append($('<option>', {
+                        value: itemData,
+                        text: itemData
+                    }));
+                });
+            });
+        }
+
+        function getUsers(role, part, patt) {
+            $.ajax({
+                cache: false,
+                data: { role: role, part: part, patt: patt },
+                dataType: 'json',
+                method: 'POST',
+                url: 'getUsers',
+                success: function (list) {
+                    var tbUsers = $('#tbUsers');
+                    tbUsers.empty();
+
+                    $.each(list, function (i, u) {
+
+                        var tr = $('<tr>');
+                        tr.append($('<td>', { text: u.UserName }));
+                        tr.append($('<td>', { text: u.Name }));
+                        tr.append($('<td>', { text: u.Department }));
+
+                        var adduser = $('<a>', { class: 'fa fa-user-plus', style: 'color:green;', href: '#' });
+                        adduser.on('click', function () {
+                            $.ajax({
+                                cache: false,
+                                data: { role: role, user: u.Id },
+                                dataType: 'json',
+                                method: 'POST',
+                                url: 'AddUserRole',
+                                success: function (result) {
+                                    alert(result['msg']);
+                                    if (result.success) {
+                                        getUsers(role, part, patt);
+                                        getUsersRole($('#roleid').val());
+                                    }
+                                }
+                            });
+                        });
+                        tr.append($('<td>', { class: 'col-action' }).append(adduser));
+                        tbUsers.append(tr);
+
+                    });
+
+                }
+            });
+        }
+
+        function getUsersRole(role) {
+            $.ajax({
+                cache: false,
+                data: { role: role, page: $('#userPage').val(), rows: 10 },
+                dataType: 'json',
+                method: 'POST',
+                url: 'getUsersInRole',
+                success: function (list) {
+
+                    initializerPageGroup(list.pageinfo.current, list.pageinfo.total, $('#Pages'), userPageClicked);
+
+                    var tbMembers = $('#tbMembers');
+
+                    tbMembers.empty();
+
+                    $.each(list.user, function (i, u) {
+
+                        var tr = $('<tr>');
+
+                        tr.append($('<td>', { text: u.UserName }));
+                        tr.append($('<td>', { text: u.Name }));
+                        tr.append($('<td>', { text: u.Department }));
+                        tr.append($('<td>', { text: u.Factory }));
+                        if (u.Block) {
+                            tr.append($('<td>', { class: 'col-action' }).append($('<span>', { class: 'fa fa-user', style: 'color:red;' })));
+                        } else {
+                            tr.append($('<td>', { class: 'col-action' }).append($('<span>', { class: 'fa fa-user', style: 'color:green;' })));
+                        }
+
+                        tr.append($('<td>', { text: u.CreatedBy }));
+                        tr.append($('<td>', { text: u.CreatedTime }));
+
+                        var del = $('<a>', { class: 'btn fa fa-trash', style: 'color:red;' })
+                        del.on('click', function () {
+                            $.ajax({
+                                cache: false,
+                                data: { role: role, user: u.Id },
+                                dataType: 'json',
+                                method: 'POST',
+                                url: 'DelUserFromRole',
+                                success: function (result) {
+                                    alert(result.msg);
+                                    if (result.success) {
+                                        getUsersRole($('#roleid').val());
+                                    }
+                                }
+                            });
+                        });
+                        tr.append($('<td>', { class: 'col-action' }).append(del));
+                        tbMembers.append(tr);
+                    });
+
+                }
+            });
+        }
+
+        function userPageClicked(page) {
+            $('#userPage').val(page);
+            getUsersRole($('#roleid').val());
+        }
+
+        $(document).ready(function () {
+            //Show modal add new role
+            $('#btnAddRole').on('click', function () {
+                $('#addrolemodal').modal('show');
+            });
+
+            //Show modal to mapping action
+            $('#btnroleactionadd').on('click', function () {
+                $('#rolemappingmodal').modal('show');
+            });
+
+            //Button add new role clicked
+            $('#btnaddrolesubmit').on('click', function () {
+                if (rolename.val()) {
+                    if (roledes.val()) {
+                        $.ajax({
+                            cache: false,
+                            dataType: 'json',
+                            data: { name: rolename.val(), des: roledes.val() },
+                            url: 'AddRole',
+                            success: function (result) {
+                                if (result['success']) {
+                                    alert('Role ' + rolename.val() + ' has added !');
+                                } else {
+                                    alert('Role ' + rolename.val() + ' is exist !');
+                                }
+                            }
+                        });
+                    } else {
+                        alert('Please enter description');
+                    }
+                } else {
+                    alert('Please enter role name');
+                }
+            });
+
+            //Button mapping action click
+            $('#btnAddAction').on('click', function () {
+                if (!$('#menu').val()) {
+                    alert('Please enter menu text');
+                    return false;
+                }
+                $.ajax({
+                    cache: false,
+                    dataType: 'json',
+                    data: { role: $('#roleid').val(), act: $('#action :selected').text(), c: $('#controller :selected').text(), menu: $('#menu').val() },
+                    url: 'AddAction',
+                    success: function (result) {
+                        if (result['success']) {
+                            alert('Role action mapping successfull !');
+                        } else {
+                            alert('Role action mapping fail. It is exists !');
+                        }
+                    }
+                });
+            });
+
+            $('#addrolemodal').on('hidden.bs.modal', function () {
+                getRoles();
+            });
+
+            $('#rolemappingmodal').on('shown.bs.modal', function () {
+
+            });
+
+            $('#rolemappingmodal').on('hidden.bs.modal', function () {
+
+                $('#CrnActPage').val('1');
+                getRoleActions();
+            });
+
+            $('#controller').change(function () {
+
+                getActions();
+            });
+
+            $('#btnaddUser').on('click', function () {
+                $('#AddUserModal').modal('show');
+            });
+
+            $('#AddUserModal').on('show.bs.modal', function () {
+                getDepartments();
+                var tbUsers = $('#tbUsers');
+                tbUsers.empty();
+            });
+
+            $('#btnsearch').on('click', function () {
+                var optPart = $('#part').val();
+                var roleid = $('#roleid').val();
+                var uval = $('#uval').val();
+
+                getUsers(roleid, optPart, uval);
+
+            });
+
+            getControllers();
+            getRoles();
+        });
+
+        function initializerPageGroup(current, total, pageholder, clickaction) {
+
+            pageholder.empty();
+
+            var start = 1, end = total;
+
+            if (total > 10) {
+                end = current + 5 > total ? total : current + 5;
+                start = end - 10 < 1 ? 1 : end - 10;
+                end = end - 10 < 1 ? 10 : end;
+            }
+
+            if (current > 1) {
+                var fastbackward = $('<a>', { class: "btn fa fa-fast-backward", style: 'color:black;' });
+                fastbackward.on('click', function () {
+                    clickaction('1');
+                });
+                pageholder.append(fastbackward);
+
+                var stepbackward = $('<a>', { class: "btn fa fa-step-backward", style: 'color:black;' });
+                stepbackward.on('click', function () {
+                    clickaction((current - 1).toString());
+                });
+                pageholder.append(stepbackward);
+            }
+
+            for (var i = start; i <= end; i++) {
+                var a = $('<a>', {
+                    text: i,
+                    class: 'btn btn-sm'
+                });
+                a.on('click', function () {
+                    clickaction(this.innerText);
+                });
+                if (i == current) {
+                    a.addClass('btn-primary disabled');
+                }
+                pageholder.append(a);
+            }
+
+            if (current < total) {
+                var stepforward = $('<a>', { class: "btn fa fa-step-forward", style: 'color:black;' });
+                stepforward.on('click', function () {
+                    clickaction((current + 1).toString());
+
+                });
+                pageholder.append(stepforward);
+
+                var fastforward = $('<a>', { class: "btn fa fa-fast-forward", style: 'color:black;' });
+                fastforward.on('click', function () {
+                    clickaction(total);
+                });
+                pageholder.append(fastforward);
+            }
+        }
+    </script>
+}

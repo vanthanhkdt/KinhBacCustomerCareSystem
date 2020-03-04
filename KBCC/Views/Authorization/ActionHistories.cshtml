@@ -3,5 +3,256 @@
     ViewBag.Title = "ActionHistories";
 }
 
-<h2>ActionHistories</h2>
+<link href="~/Content/authorization/user-mgr.css" rel="stylesheet" />
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <div class="breadcrumb flat">
+                <a href="~/Home/Index">Trang chủ</a>
+                <a href="~/Authorization/Index">Quản trị tài khoản</a>
+                <a href="javascript:location.reload();" class="active">Lịch sử hoạt động</a>
+            </div>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Tìm</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Quản trị tài khoản <small>Lịch sử hoạt động</small></h2>
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <span class="fa fa-history" style="color:blue;"></span><b> - Lịch sử hoạt động</b>
+                    <hr />
+                    <div>
+                        <div class="row" style="margin-left:5px;margin-bottom:15px;">
+                            <div style="margin-left: 0px;margin-bottom:10px;">
+                                <select id="controller" class="form-control form-control-sm" style="width:250px;">
+                                    <option value="">All</option>
+                                </select>
+                            </div>
+                            <div style="margin-left: 0px;margin-bottom:10px;">
+                                <select id="action" class="form-control form-control-sm" style="width:250px;">
+                                    <option value="">All</option>
+                                </select>
+                            </div>
+                            <div style="margin-left: 0px;margin-bottom:10px;">
+                                <input type="text" id="txtUser" class="form-control form-control-sm" style="width:250px;" placeholder="User Name" />
+                            </div>
+                            <div style="margin-left: 0px;margin-bottom:10px;">
+                                <input type="text" id="txtDate" class="form-control form-control-sm" style="width:250px;" placeholder="YYYY-MM-DD" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </div>
+                            <div style="margin-left: 0px;">
+                                <button class="btn btn-sm btn-success" id="btnSearch">Xem</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="min-height:300px;">
+                        <table class="table table-sm table-hover table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Controller</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">Return Type</th>
+                                    <th scope="col">Anonymouse</th>
+                                    <th scope="col">User Name</th>
+                                    <th scope="col">Route Data</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">IP Address</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbActHistories"></tbody>
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        <input type="hidden" id="page" value="1" />
+                        <div class="btn-group btn-group-sm">
+                            <div id="Pages">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/datetimepicker")
+    <script>
+        function getActions() {
+            $.ajax({
+                cache: false,
+                dataType: 'json',
+                method: 'POST',
+                url: 'getActions',
+                success: function (data) {
+                    var actions = $('#action');
+                    $.each(data, function (i, a) {
+                        actions.append($('<option>', { text: a }));
+                    });
+                }
+            });
+        }
+
+        function getControllers() {
+            $.ajax({
+                cache: false,
+                dataType: 'json',
+                method: 'POST',
+                url: 'getControllers',
+                success: function (data) {
+                    var controllers = $('#controller');
+                    $.each(data, function (i, c) {
+                        controllers.append($('<option>', { text: c }));
+                    });
+                }
+            });
+        }
+
+        function getActionHistories() {
+            $.ajax({
+                cache: false,
+                method: 'POST',
+                data: {
+                    controller: $('#controller').val(),
+                    action: $('#action').val(),
+                    user: $('#txtUser').val(),
+                    date: $('#txtDate').val(),
+                    page: $('#page').val(),
+                    rows: 20
+                },
+                url: 'getActionHistories',
+                dataType: 'json',
+                success: function (data) {
+                    initializerPageGroup(data.pageinfo.current, data.pageinfo.total, $('#Pages'), pageClicked);
+                    var tbActHistories = $('#tbActHistories');
+                    tbActHistories.empty();
+                    $.each(data.list, function (i, ah) {
+                        var tr = $('<tr>');
+
+                        tr.append($('<td>', { text: ah.Controller }))
+                        tr.append($('<td>', { text: ah.Action }))
+                        tr.append($('<td>', { text: ah.ReturnType }))
+                        tr.append($('<td>', { text: ah.Anonymouse }))
+                        tr.append($('<td>', { text: ah.UserName }))
+                        tr.append($('<td>', { text: ah.RouteData }))
+                        tr.append($('<td>', { text: ah.DateTime }))
+                        tr.append($('<td>', { text: ah.Remark }))
+
+                        tbActHistories.append(tr);
+                    });
+
+                }
+            });
+        }
+
+        function pageClicked(page) {
+            $('#page').val(page);
+            getActionHistories();
+        }
+
+        $(document).ready(function () {
+
+            getControllers();
+            getActions();
+
+            //$('#txtDate').datetimepicker({
+            //    format: 'YYYY-MM-DD'
+            //});
+
+            $('#btnSearch').on('click', function () {
+                $('#page').val(1);
+                getActionHistories();
+            });
+        });
+        function initializerPageGroup(current, total, pageholder, clickaction) {
+
+            pageholder.empty();
+
+            var start = 1, end = total;
+
+            if (total > 10) {
+                end = current + 5 > total ? total : current + 5;
+                start = end - 10 < 1 ? 1 : end - 10;
+                end = end - 10 < 1 ? 10 : end;
+            }
+
+            if (current > 1) {
+                var fastbackward = $('<a>', { class: "btn fa fa-fast-backward", style: 'color:black;' });
+                fastbackward.on('click', function () {
+                    clickaction('1');
+                });
+                pageholder.append(fastbackward);
+
+                var stepbackward = $('<a>', { class: "btn fa fa-step-backward", style: 'color:black;' });
+                stepbackward.on('click', function () {
+                    clickaction((current - 1).toString());
+                });
+                pageholder.append(stepbackward);
+            }
+
+            for (var i = start; i <= end; i++) {
+                var a = $('<a>', {
+                    text: i,
+                    class: 'btn btn-sm'
+                });
+                a.on('click', function () {
+                    clickaction(this.innerText);
+                });
+                if (i == current) {
+                    a.addClass('btn-primary disabled');
+                }
+                pageholder.append(a);
+            }
+
+            if (current < total) {
+                var stepforward = $('<a>', { class: "btn fa fa-step-forward", style: 'color:black;' });
+                stepforward.on('click', function () {
+                    clickaction((current + 1).toString());
+
+                });
+                pageholder.append(stepforward);
+
+                var fastforward = $('<a>', { class: "btn fa fa-fast-forward", style: 'color:black;' });
+                fastforward.on('click', function () {
+                    clickaction(total);
+                });
+                pageholder.append(fastforward);
+            }
+        }
+
+    </script>
+}

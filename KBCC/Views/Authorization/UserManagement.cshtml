@@ -3,5 +3,183 @@
     ViewBag.Title = "UserManagement";
 }
 
-<h2>UserManagement</h2>
+<link href="~/Assets/lightbox/css/lightbox.min.css" rel="stylesheet" />
+@*<link href="~/Assets/content/search/jquery-ui.css" rel="stylesheet" />*@
+<link href="~/Content/authorization/user-mgr.css" rel="stylesheet" />
 
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <div class="breadcrumb flat">
+                <a href="~/Home/Index">Trang chủ</a>
+                <a href="~/Authorization/Index">Quản trị tài khoản</a>
+                <a href="javascript:location.reload();" class="active">Quản lý người dùng</a>
+            </div>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Tìm</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Quản trị tài khoản <small>Quản lý người dùng</small></h2>
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <h2>Quản lý người dùng</h2>
+                    <hr />
+                    <div class="row" style="margin-bottom:10px;">
+                        <div class="col-md-2 offset-md-1">
+                            <select class="form-control form-control-sm" id="searchopt">
+                                <option value="0" selected>GEN</option>
+                                <option value="1">Họ tên</option>
+                                <option value="2">Bộ phận</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="searchvalue" class="form-control form-control-sm" />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" id="btnsearch" class="btn btn-sm btn-primary" value="Search">Tìm kiếm</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 offset-md-1">
+                            <label>Tùy chọn số dòng hiển thị: </label>
+                            <select id="rows">
+                                <option value="15" selected>15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row imageviewer" style="min-height:300px;">
+                        @*<style>
+                                #thead th {
+                                    text-align: center;
+                                    vertical-align: middle;
+                                }
+                            </style>*@
+                        <table class="table table-sm table-hover table-bordered">
+                            <thead class="thead-light" id="thead">
+                                <tr>
+                                    <th scope="col">GEN</th>
+                                    <th scope="col">Ảnh</th>
+                                    <th scope="col">Họ và tên</th>
+                                    <th scope="col">Bộ phận</th>
+                                    <th scope="col">Knox ID</th>
+                                    <th scope="col">Thời điểm đăng ký</th>
+                                    <th scope="col">Đăng nhập lần cuối</th>
+                                    <th scope="col">IP đăng nhập lần cuối</th>
+                                    <th scope="col">Nhà máy</th>
+                                    <th scope="col">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tusers"></tbody>
+                        </table>
+                    </div>
+                    <div id="paging" class="text-center">
+                        <input type="hidden" name="crntPage" id="currentPage" value="1" />
+                        <div class="btn-group" id="pages">
+                            @*@for (int i = 1; i <= Model.TotalPages; i++)
+                                {
+                                    if (i == Model.CurrentPage)
+                                    {
+                                        <a href="#" class="btn btn-sm btn-primary">@i</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" class="btn btn-sm" onclick="pageClick(this)">@i</a>
+                                    }
+
+                                }*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="keymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mật khẩu mới</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="key" readonly class="form-control" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/Scripts/authorization/user-mgr.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnsearch').on('click', function (evt) {
+                var pages = $('#pages');
+                var rows = $('#rows').val();
+                var val = $('#searchvalue').val();
+                if (!val) {
+                    getUsers($('#tusers'), rows, pages);
+                }
+                else {
+                    var opt = $('#searchopt').val();
+
+                    switch (opt) {
+                        case '0': //Gen
+                            getUsersByGen(val, $('#tusers'), rows, pages);
+                            break;
+                        case '1': //Name
+                            getUsersByName(val, $('#tusers'), rows, pages);
+                            break;
+                        case '2': //Part
+                            getUsersByPart(val, $('#tusers'), rows, pages);
+                            break;
+                    }
+                }
+            });
+        });
+    </script>
+}
