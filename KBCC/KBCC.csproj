@@ -1204,7 +1204,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\common\provinces.js" />
+    <Content Include="Scripts\common\telecom.js" />
     <Content Include="Scripts\common\toast.js" />
+    <Content Include="Scripts\common\transport-company.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />

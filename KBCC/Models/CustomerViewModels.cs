@@ -16,7 +16,7 @@ namespace KBCC.Models
         public string CustomId { get; set; }
         public string Code { get; set; }
         /// <summary>
-        /// 0: Pending  | 1: Registed Barcodes  | 2: Disposed | -1: Deleted
+        /// 0: Z  | 1: A  | 2: B | 3: C
         /// </summary>
         public int Status { get; set; }
         //Customer code
