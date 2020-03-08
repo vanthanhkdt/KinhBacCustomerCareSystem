@@ -11582,6 +11582,7 @@ body.md-skin {
 
 .table-order tbody {
     display: block;
+    /*width: 1900px;*/
     height: 70vh;
     overflow: auto;
 }
@@ -11610,7 +11611,7 @@ table .edit {
 }
 
 table .checked {
-    background-color: #A2D9CE;
+    background-color: #A2D9CE !important;
 }
 
 .modal-product .box-caption {
@@ -11669,7 +11670,7 @@ div.fill-order-area {
     padding: 0 !important;
 }
 
-.modal-product .mp-center a.tag {
+.modal-product a.tag {
     background-color: #27ae60;
     padding: 0 7px;
     border-radius: 2px;
@@ -12114,6 +12115,32 @@ div.fill-order-area {
         color: #fff
     }
 
+.modal-product .tags {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .modal-product .tags li {
+        display: inline-block;
+        padding: 0 7px;
+        color: #fff;
+        background-color: gray;
+        line-height: 23px;
+        /*margin-right: 3px;*/
+        cursor: default;
+    }
+
+.tag-area .dropdown-menu li a {
+    padding: 0 7px !important;
+}
+
+.modal-product .tags li .remove {
+    display: inline-block;
+    cursor: pointer;
+}
+
 .mydp {
     vertical-align: middle;
     display: inline-block
@@ -12182,16 +12209,20 @@ div.fill-order-area {
         text-align: center
     }
 
+
 /*Modal Upload Orders*/
 .table-upload-orders a.add-new i {
     color: green;
 }
+
 .table-upload-orders a.delete i {
     color: red;
 }
+
 .table-upload-orders a.copy i {
     color: blue;
 }
+
 .main-tabs {
     width: 100%;
     padding: 0px 0px 80px 0px;
@@ -12268,9 +12299,10 @@ div.fill-order-area {
     cursor: default;
 }
 
-.tag-preview-icon{
+.tag-preview-icon {
     padding: 2px 5px;
 }
+
 .tag-optional {
     background-color: #EDE7F6;
     padding: 10px;
@@ -12279,10 +12311,12 @@ div.fill-order-area {
     border-width: 0px 0px 0px 5px;
     padding-left: 5px;
 }
-.tag-optional div.name-info {
-    margin-bottom: 20px;
-}
-#tag-preview-name{
+
+    .tag-optional div.name-info {
+        margin-bottom: 20px;
+    }
+
+#tag-preview-name {
     padding-left: 3px;
 }
 
@@ -12303,31 +12337,36 @@ input[type="file"] {
 }
 
 .table-upload-orders th.order, .table-upload-orders td.order {
-    width:50px !important;
+    width: 50px !important;
 }
+
 .table-upload-orders th.import-excel-actions, .table-upload-orders td.import-excel-actions {
     width: 60px !important;
 }
-.table-upload-orders tr.input-val{
-    padding:2px;
+
+.table-upload-orders tr.input-val {
+    padding: 2px;
 }
 
 .upload-order-area {
     height: 60vh;
     overflow-y: auto;
 }
+
 .table-upload-orders td, .import-excel-actions {
     vertical-align: middle !important;
     align-content: center !important;
     text-align: center !important;
-    padding:2px !important;
+    padding: 2px !important;
 }
+
     .table-upload-orders td a {
         margin-left: 3px;
     }
-    .table-upload-orders .import-excel-actions .delete {
-        margin-left: 5px;
-    }
+
+.table-upload-orders .import-excel-actions .delete {
+    margin-left: 5px;
+}
 
 .autocomplete-suggestions {
     border: 1px solid #e4e4e4;
@@ -12352,6 +12391,7 @@ input[type="file"] {
     color: #3399ff;
     font-weight: bolder;
 }
+
 .autocomplete-suggestions {
     border: 1px solid #e4e4e4;
     background: #F4F4F4;

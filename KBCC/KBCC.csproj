@@ -1203,6 +1203,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\common\com.js" />
     <Content Include="Scripts\common\provinces.js" />
     <Content Include="Scripts\common\telecom.js" />
     <Content Include="Scripts\common\toast.js" />

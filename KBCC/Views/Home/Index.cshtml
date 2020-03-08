@@ -187,6 +187,7 @@
                 <div id="modal-add-order-tab1" class="m-tab-content container-fluid" style="display:block !important;">
                     <!--Trang Thai-->
                     <div class="row">
+
                         <div class="col-md-4">
                             <select onchange="this.className=this.options[this.selectedIndex].className"
                                     class="red-bg drop-down-status">
@@ -201,11 +202,47 @@
                                 <option class="graybg drop-down-status" value="nhanhoan">Nhận hoàn</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <a class="tag" dropdowntoggle="" tooltip="Thêm tag" aria-haspopup="true">
+                        <div class="col-md-8 tag-area dropdown">
+                            <a class="tag" dropdowntoggle="" tooltip="Thêm tag" aria-haspopup="true" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-tag"></i>Tags
                             </a>
+                            <ul class="dropdown-menu show-tag" role="menu" style="left: 0px; right: auto; top: 100%; transform: translateY(0px);">
+                                <!----><!---->
+                                <!---->
+                                <li role="menuitem">
+                                    <a class="dropdown-item" style="color: white; background-color: rgb(58, 216, 73);">
+                                        <i class=" glyphicon glyphicon-asterisk"></i> Khách Quen
+                                    </a>
+                                </li>
+                                <!---->
+                                <!---->
+                                <li role="menuitem">
+                                    <a class="dropdown-item" style="color: white; background-color: rgb(255, 38, 38);">
+                                        <i class=" glyphicon glyphicon-star-empty"></i> Hẹn Gọi
+                                    </a>
+                                </li>
+                                <!---->
+                                <!---->
+                                <li role="menuitem">
+                                    <a class="dropdown-item" style="color: white; background-color: rgb(225, 30, 16);">
+                                        <i class="	glyphicon glyphicon-heart"></i> Tag mới
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="tags">
+                                <!---->
+                                <li container="body" style="background-color: rgb(58, 216, 73);">
+                                    <i aria-hidden="true" class=" glyphicon glyphicon-asterisk"></i> Khách Quen
+                                    <i aria-hidden="true" class="fa fa-times remove"></i>
+                                </li><!---->
+                                <li container="body" style="background-color: rgb(255, 38, 38);">
+                                    <i aria-hidden="true" class=" glyphicon glyphicon-star-empty"></i> Hẹn Gọi
+                                    <i aria-hidden="true" class="fa fa-times remove"></i>
+                                </li><!---->
+                            </ul>
                         </div>
+
                     </div>
                     <!--Khach Hang & Ghi Chu-->
                     <div class="row">
@@ -464,7 +501,7 @@
                                             Hoạt động
                                         </label>
                                     </div>
-                                    <button class="btn btn-success" type="button" style="width:120px;"><i class="fa fa-check"></i>&nbsp;Hoàn tất</button>
+                                    <button id="btn-add-tag-submit" class="btn btn-primary" type="button"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
                                 </div>
 
                             </div>
@@ -2834,11 +2871,14 @@
     @Styles.Render("~/plugins/awesomeCheckboxStyles")
     @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
     @Styles.Render("~/plugins/toastrStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
 }
 @section Scripts {
+    <script src="~/Scripts/common/com.js"></script>
     @Scripts.Render("~/plugins/peity")
     @Scripts.Render("~/plugins/iCheck")
     @Scripts.Render("~/plugins/toastr")
+    @Scripts.Render("~/plugins/sweetAlert")
 
     @*@Scripts.Render("~/Content/plugins/colorpicker/colorpickerStyles")*@
     <script src="~/Scripts/plugins/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
@@ -2872,6 +2912,29 @@
             $('.tag-preview').find('i').removeClass();
             $('.tag-preview').find('i').addClass("fa").addClass(val);
             changeTagColor($('#tag-bg-color').val(), $('#tag-color').val());
+
+            $('#btn-add-tag-submit').click(function () {
+                swal({
+                    title: "Bạn có chắc chắn muốn thêm Tag này không?",
+                    text: "Tag mới sẽ được thêm vào hệ thống này!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Có. Thêm ngay!",
+                    cancelButtonText: "Không. Hủy bỏ!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            toastr.success("Đã thêm thành công", "Thành công");
+                            swal("Thành công!", "Đã thêm thành công.", "success");
+                        } else {
+                            swal("Đã hủy", "Không có Tag mới nào được thêm.", "error");
+                        }
+                    });
+            });
+
 
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
@@ -2969,9 +3032,9 @@
             //    });
             //});
 
-            var provincesArray=[];
+            var provincesArray = [];
             $.each(provinces.data, function (i, p) {
-                $.each(p.districts, function (i,d) {
+                $.each(p.districts, function (i, d) {
                     provincesArray.push({
                         value: d.name + ', ' + p.name,
                         data: d.code + ' ' + d.name + ' ' + p.code + ' ' + p.name
@@ -3011,10 +3074,10 @@
             let aCopy = $('<a>', { class: 'copy', title: 'Sao chép' });
             aCopy.append($('<i>', { class: 'fa fa-copy' }))
             aCopy.on('click', function () {
-                let $ctr = $(this).closest('tr');
-                let $trColone = $ctr.clone();
-                $trColone.insertAfter($ctr);
-                console.log($ctr);
+                let ctr = $(this).closest('tr');
+                let trColone = $(ctr).clone(true, true);
+                trColone.insertAfter(ctr);
+                console.log(ctr);
                 $('.add-new').remove();
                 addAddAction();
             });
@@ -3035,11 +3098,10 @@
         });
 
         $('.copy').on('click', function () {
-            let $ctr = $(this).closest('tr');
-            let $trColone = $ctr.clone();
-            $trColone.insertAfter($ctr);
-            console.log($ctr);
-            //tableBody.append(ctr);
+            let ctr = $(this).closest('tr');
+            let trColone = $(ctr).clone(true, true);
+            trColone.insertAfter(ctr);
+            console.log(ctr);
             $('.add-new').remove();
             addAddAction();
         });
@@ -3067,10 +3129,10 @@
             let aCopy = $('<a>', { class: 'copy', title: 'Sao chép' });
             aCopy.append($('<i>', { class: 'fa fa-copy' }))
             aCopy.on('click', function () {
-                let $ctr = $(this).closest('tr');
-                let $trColone = $ctr.clone();
-                $trColone.insertAfter($ctr);
-                console.log($ctr);
+                let ctr = $(this).closest('tr');
+                let trColone = $(ctr).clone(true, true);
+                trColone.insertAfter(ctr);
+                console.log(ctr);
                 $('.add-new').remove();
                 addAddAction();
             });
@@ -3153,10 +3215,10 @@
                                 let aCopy = $('<a>', { class: 'copy', title: 'Sao chép' });
                                 aCopy.append($('<i>', { class: 'fa fa-copy' }))
                                 aCopy.on('click', function () {
-                                    let $ctr = $(this).closest('tr');
-                                    let $trColone = $ctr.clone();
-                                    $trColone.insertAfter($ctr);
-                                    console.log($ctr);
+                                    let ctr = $(this).closest('tr');
+                                    let trColone = $(ctr).clone(true, true);
+                                    trColone.insertAfter(ctr);
+                                    console.log(ctr);
                                     $('.add-new').remove();
                                     addAddAction();
                                 });
@@ -3174,14 +3236,17 @@
                                 tableBody.append(tr);
                             });
                             addAddAction();
+                            swal("Thành công!", "Nhập từ Excel thành công.", "success");
                             toastr.success("Nhập từ Excel thành công", "Thành công");
                         }
                         else {
+                            swal("Thất bại!", "Bạn không thể thực hiện hành động này. Liên hệ với Quản trị viên để tiếp tục làm việc.", "error");
                             toastr.error("Bạn không thể thực hiện hành động này. Liên hệ với Quản trị viên để tiếp tục làm việc.", "Lỗi");
                         }
                     },
                     error: function (err) {
                         //hideLoader();
+                        swal("Thất bại!", "Bạn không thể thực hiện hành động này. Liên hệ với Quản trị viên để tiếp tục làm việc.", "error");
                         toastr.error("Bạn không thể thực hiện hành động này. Liên hệ với Quản trị viên để tiếp tục làm việc.", "Lỗi");
                     }
                 });
@@ -3211,10 +3276,10 @@
                 let aCopy = $('<a>', { class: 'copy', title: 'Sao chép' });
                 aCopy.append($('<i>', { class: 'fa fa-copy' }))
                 aCopy.on('click', function () {
-                    let $ctr = $(this).closest('tr');
-                    let $trColone = $ctr.clone();
-                    $trColone.insertAfter($ctr);
-                    console.log($ctr);
+                    let ctr = $(this).closest('tr');
+                    let trColone = $(ctr).clone(true, true);
+                    trColone.insertAfter(ctr);
+                    console.log(ctr);
                     $('.add-new').remove();
                     addAddAction();
                 });
